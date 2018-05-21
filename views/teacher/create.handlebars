@@ -1,0 +1,70 @@
+<form action="/teacher/class/create" method="POST" class="col-6">
+  <div class="form-group">
+    
+     <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Class name:</label>
+            <input type="text" name="ClassName" class="form-control" id="recipient-name" required>
+          </div>
+        <!-- Days of week -->
+         <div class="input-group">
+            <div class="input-group-addon">
+                 <span class="input-group-text" id="time_mon">Monday</span>
+        </div>
+                 <input name="start_mon"  id="start_mon" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_mon')">
+                 <input name="end_mon"  id="end_mon" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_mon')">
+        </div>
+
+         <div class="input-group">
+            <div class="input-group-addon">
+                 <span class="input-group-text" id="time_tue">Tuesday</span>
+        </div>
+                 <input name="start_tue"  id="start_tue" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_tue')">
+                 <input name="end_tue"  id="end_tue" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_tue')">
+        </div>
+
+         <div class="input-group">
+            <div class="input-group-addon">
+                 <span class="input-group-text" id="time_wed">Wednesday</span>
+        </div>
+                 <input name="start_wed"  id="start_wed" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_wed')">
+                 <input name="end_wed"  id="end_wed" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_wed')">
+        </div>
+
+         <div class="input-group">
+            <div class="input-group-addon">
+                 <span class="input-group-text" id="time_thu">Thursday</span>
+        </div>
+                 <input name="start_thu"  id="start_thu" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_thu')">
+                 <input name="end_thu"  id="end_thu" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_thu')">
+        </div>
+
+         <div class="input-group">
+            <div class="input-group-addon">
+                 <span class="input-group-text" id="time_fri">Friday</span>
+        </div>
+                 <input name="start_fri"  id="start_fri" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_fri')">
+                 <input name="end_fri"  id="end_fri" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_fri')">
+        </div>
+
+       <div class="input-group">
+            <div class="input-group-addon">
+                 <span class="input-group-text" id="time_sut">Saturday</span>
+        </div>
+                 <input name="start_sut"  id="start_sut" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_sut')">
+                 <input name="end_sut"  id="end_sut" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_sut')">
+        </div>
+
+        <div id="text_sun" class="input-group">
+            <div  class="input-group-addon">
+                 <span class="input-group-text">Sunday</span>
+            </div>
+            
+                 <input name="start_sun" id="start_sun" type="text" class="form-control" placeholder="Start Time" oninput="CheckInput('start_sun')">
+                 <input name="end_sun" id="end_sun" type="text" class="form-control" placeholder="End Time" oninput="CheckInput('end_sun')">
+        </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary col-12">Submit</button>
+</form>
+
+

@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Class Id</th>
+      <th scope="col">Student-today</th>
+         <th scope="col">Add</th>
+          <th scope="col">View</th>
+    </tr>
+  </thead>
+  <tbody>
+{{#each class_name}}
+   <tr>
+      <th scope="row">#</th>
+    <td>{{class_name}}</td>
+    <td>{{_id}}</td>
+    <td>{{Start_Mon}}</td>
+    <td><a class="btn btn-dark mb-20 col-10 mb-auto" href="/teacher/class/add">Add Student</a></td>
+    <td><a class="btn btn-dark mb-20 col-10 mb-auto" href="/teacher/class/info/{{_id}}">View Info</a></td>
+    </tr>
+   
+    {{/each}}
+  </tbody>
+</table>

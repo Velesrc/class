@@ -1,0 +1,28 @@
+ <form class="form-horizontal" action='/teacher/class/add' method="POST">
+  <fieldset>
+    <div id="legend">
+      <legend class="">Assign Student to class</legend>
+    </div>
+ <div class="form-group">
+  <label for="sel1">Select Class:</label>
+  <select class="form-control" id="sel1" name="class">
+      {{#each class_name}}
+    <option>{{class_name}}</option>
+    {{/each}}
+  </select>
+</br>
+</br>
+  <label for="sel1">Select Student:</label>
+  <select class="form-control" id="sel1" name="class">
+      {{#each student_}}
+    <option>{{first_name}} {{last_name}}</option>
+    {{/each}}
+  </select>
+</div> 
+</br>
+     <div class="controls">
+        <button class="btn btn-success">Register</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

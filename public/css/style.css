@@ -1,0 +1,16 @@
+.input-group-addon  {
+    
+    min-width: 120px;
+}
+
+.time_valid {
+    background-color: rgb(2, 110, 11);
+    color: whitesmoke
+}
+
+.time_wrong {
+    background-color: rgb(194, 101, 101);
+    color: whitesmoke
+}
+
+

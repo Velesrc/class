@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Students in class</h1>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">id</th>
+      <th scope="col">password</th>
+    </tr>
+  </thead>
+  <tbody>
+{{#each usersArray}}
+    <tr>
+      <th scope="row"></th>
+    <td>{{first_name}}</td>
+    <td>{{last_name}}</td>
+    <td>{{user_id}}</td>
+    <td>{{password}}</td>
+    </tr>
+   
+{{/each}}
+  </tbody>
+</table>
+</br>
+</br>
+</br>
+</br>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Class Schedule</h1>
+</div>
+<!-- Time -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Mon</th>
+      <th scope="col">Tue</th>
+      <th scope="col">Wed</th>
+      <th scope="col">Thu</th> 
+      <th scope="col">Fri</th>
+      <th scope="col">Sut</th>
+      <th scope="col">Sun</th>
+    </tr>
+  </thead>
+  <tbody>
+{{#if ClassArr}}
+    <tr>
+    <th scope="col"></th>
+    <td>{{ClassArr.class_name}}</td>
+    <td>{{ClassArr.Start_Mon}}</td>
+    <td>{{ClassArr.Start_Tue}}</td>
+    <td>{{ClassArr.Start_Wed}}</td>
+    <td>{{ClassArr.Start_Thu}}</td>
+    <td>{{ClassArr.Start_Fri}}</td>
+    <td>{{ClassArr.Start_Sut}}</td>
+    <td>{{ClassArr.Start_Sun}}</td>
+    </tr>
+
+    <tr>
+    <th scope="row"></th>
+    <td>{{ClassArr.class_name}}</td>
+    <td>{{ClassArr.End_Mon}}</td>
+    <td>{{ClassArr.End_Tue}}</td>
+    <td>{{ClassArr.End_Wed}}</td>
+    <td>{{ClassArr.End_Thu}}</td>
+    <td>{{ClassArr.End_Fri}}</td>
+    <td>{{ClassArr.End_Sut}}</td>
+    <td>{{ClassArr.End_Sun}}</td>
+    </tr>
+{{/if}}
+  </tbody>
+</table>
