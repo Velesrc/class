@@ -4,8 +4,23 @@ const Schema = mongoose.Schema;
 // Create Schema
 const ClassSchema = new Schema({
 
-  class_name:{
+  Class_Name:{
     type: String,
+    required: true
+  },
+
+  Students_In_Class:{
+    type: Number,
+    required: true
+  },
+
+  Students_In_Class_Today:{
+    type: Number,
+    required: true
+  },
+
+  Last_Update:{
+    type: Date,
     required: true
   },
 

@@ -4,20 +4,21 @@ const passport = require('passport');
 const qr = require('qrcode');
 const router = express.Router();
 
+// Load helpers for check Authentication
 const {ensureAuthenticated} = require('../helpers/auth');
 const {RoleStudent} = require('../helpers/auth');
-// Load User Model
 
+// Load DB models
 require('../models/user_model');
 const User = mongoose.model('user_schema');
 
 require('../models/class_students')
 const Assign = mongoose.model('assign_schema');
 
-
 require('../models/class_model')
 const Class = mongoose.model('class_schema');
- // Get
+
+ // ======================= Student Get and Post =======================
  router.get('/schedule', RoleStudent, (req, res) => {
 
     Assign.find({user_id: req.session.passport.user})
@@ -31,9 +32,9 @@ const Class = mongoose.model('class_schema');
         }
 
         Class.find(ClassArray, (err, AllStudentClasses) => {
-            let TodayDate = new Date();
-            let TodayDayOfWeek = TodayDate.getDay();
-            let TodayDay = TodayDate.getDate();
+
+            let TodayDayOfWeek = new Date().getDay();
+
             const DayArrStart = ['Start_Sun', 'Start_Mon', 'Start_Tue', 'Start_Wed', 'Start_Thu', 'Start_Fri', 'Start_Sut'];
             const DayArrEnd = ['End_Sun', 'End_Mon', 'End_Tue', 'End_Wed', 'End_Thu', 'End_ri', 'End_Sut'];
 

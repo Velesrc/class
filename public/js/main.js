@@ -1,6 +1,6 @@
-
+// When User Typing in Input field for Time, function checks if time is valid
 function CheckInput(name) {
-    const RegExpForTime = /^(10|11|12|[1-9]):[0-5][0-9]$/;
+const RegExpForTime = /^(10|11|12|[1-9]):[0-5][0-9]$/;
    // alert(id_name);
    $(`#${name}`).parent().addClass('time_change');
     if( $(`#${name}`).val != false )

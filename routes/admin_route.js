@@ -8,16 +8,17 @@ require('../models/user_model');
 const User = mongoose.model('user_schema');
 
 
+
  // Get register
  router.get('/register', (req, res) => {
     res.render('admin/register');
 })
-// Post register 
 
+// Post register 
 router.post('/register', (req, res) => {
- // console.log(req.body);
+
+  // For future use. Validtate request 
   let error = [];
-  //error.push('Test')
 
   if(error.length > 0){
 
@@ -33,7 +34,7 @@ router.post('/register', (req, res) => {
     User.findOne({user_id: req.body.user_id})
       .then(user => {
         if(user){
-          console.log('Id already registered');
+          console.log('User already registered');
           res.redirect('/register');
         } else {
           const newUser = new User({
@@ -43,10 +44,10 @@ router.post('/register', (req, res) => {
             godlike_power: req.body.user_role,
             password: req.body.password
           });
-          //console.log(newUser);
+          
           newUser.save()
           .then(user => {
-            console.log('User registered');
+            console.log('User successeful registered');
             res.redirect('/');
           })
 

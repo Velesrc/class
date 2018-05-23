@@ -2,32 +2,35 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const router = express.Router();
+
+// Load helpers for check Authentication
+const {ensureAuthenticated} = require('../helpers/auth');
 const {RoleTeacher} = require('../helpers/auth');
-// Load User Model
+
+// ================ Load DB models ========================
 require('../models/user_model');
 const User = mongoose.model('user_schema');
 
 require('../models/class_model')
 const Class = mongoose.model('class_schema');
 
-
 require('../models/class_students')
 const Assign = mongoose.model('assign_schema');
 // ================================== class branch ========================================
- // Class
-router.get('/class/list',RoleTeacher, (req, res) => {
+
+// Get list of Classes
+router.get('/class/list',ensureAuthenticated, RoleTeacher, (req, res) => {
 
     Class.find({})
     .then( class_name => {
         res.render('teacher/class', {
         class_name : class_name,
         role2: true
+        })
     })
-
-})
 })
 
-router.get('/class/info/:id',RoleTeacher, (req, res) => {
+router.get('/class/info/:id',ensureAuthenticated, RoleTeacher, (req, res) => {
     let classid = req.url.split('/')[3];
     const UserArr = {};
     UserArr._id = []
@@ -84,7 +87,7 @@ router.post('/class/add', (req, res) => {
     })
 });
 
-router.get('/class/add',RoleTeacher, (req, res) => {
+router.get('/class/add',ensureAuthenticated, RoleTeacher, (req, res) => {
     Class.find({})
     .then( class_name => {
         User.find({godlike_power: 1})
@@ -100,13 +103,13 @@ router.get('/class/add',RoleTeacher, (req, res) => {
 
 
  // Class
- router.get('/class/create', RoleTeacher,(req, res) => {
+ router.get('/class/create',ensureAuthenticated,  RoleTeacher,(req, res) => {
     res.render('teacher/create', {
         role2: true
     });
 })
 
-router.post('/class/create', RoleTeacher, (req, res) => {
+router.post('/class/create',ensureAuthenticated, RoleTeacher, (req, res) => {
     // Validation 
     console.log(req.body);
    const RegExpForTime = /^(10|11|12|[1-9]):[0-5][0-9]$/;
@@ -181,17 +184,23 @@ router.post('/class/create', RoleTeacher, (req, res) => {
     });
 })
 
-router.get('/student/list', RoleTeacher, (req, res) => {
+router.get('/student/list', ensureAuthenticated, RoleTeacher, (req, res) => {
     User.find({godlike_power: 1})
-    .then( student_ => {
-        res.render('teacher/student_list', {
-        student_ : student_,
-        role2: true
+        .then( student_ => {
+            res.render('teacher/student_list', {
+            student_ : student_,
+            role2: true
+        })
     })
 })
-})
+
+router.get('/student/list/:id', ensureAuthenticated, RoleTeacher, (req, res) => {
+    let StudentIdFromURL = req.url.split('/')[3];
+
+    {}
+});
 // Post register  Same with admin but always make role:Student
-router.post('/register', RoleTeacher,(req, res) => {
+router.post('/register',ensureAuthenticated, RoleTeacher,(req, res) => {
  // console.log(req.body);
   let error = [];
 
