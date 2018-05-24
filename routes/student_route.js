@@ -12,10 +12,10 @@ const {RoleStudent} = require('../helpers/auth');
 require('../models/user_model');
 const User = mongoose.model('user_schema');
 
-require('../models/class_students')
+require('../models/class_population');
 const Assign = mongoose.model('assign_schema');
 
-require('../models/class_model')
+require('../models/class_model');
 const Class = mongoose.model('class_schema');
 
  // ======================= Student Get and Post =======================

@@ -14,7 +14,7 @@ const User = mongoose.model('user_schema');
 require('../models/class_model')
 const Class = mongoose.model('class_schema');
 
-require('../models/class_students')
+require('../models/class_population')
 const Assign = mongoose.model('assign_schema');
 // ================================== class branch ========================================
 
@@ -65,25 +65,72 @@ router.get('/class/info/:id',ensureAuthenticated, RoleTeacher, (req, res) => {
 
 })
 
-router.post('/class/add', (req, res) => {
-   console.log(req.body.class[0]);
+// Assign student to class
+router.post('/class/add',ensureAuthenticated, RoleTeacher, (req, res) => {
+   
+    // Input student - _id Class - Class_Name
+    Assign.find({Class_Name : req.body.ClassName})
+    .then( ReturnedClasses => {
 
-   Class.findOne({class_name : req.body.class[0]})
-    .then( class_obj => {
-        let nameArr = req.body.class[1].split(' ')
-        let first_name = nameArr[0];
-        User.findOne({first_name:first_name})
-            .then( student_ => {
-              if(student_ != null && student_ != undefined && class_obj != null && class_obj != undefined)
-              {
-                const newAssign = new Assign({
-                    class_id:class_obj._id,
-                    user_id:student_._id
-                });
-                
-                newAssign.save().then(res.redirect('/teacher/class/list'))
-              }
+        // If Class is not emty
+        if(ReturnedClasses) 
+        {
+            let err = []; 
+
+            for(let SpecClass in ReturnClasses)
+            {
+                if(SpecClass.User_Id == req.body.UserId)
+                {
+                    console.log('Student Already in Class');
+                    err.push('Student Already in Class')
+
+                }
+            }
+        
+
+            User.findOne({ _id:UserId})
+                .then( ReturnedStudent => {
+                    
+                    let NewStudentAssign = new Assign({
+                        Class_Id : ReturnedClasses._id,
+                        Class_Name : ReturnedClasses.Class_Name,
+                        User_Id : ReturnedStudent._id,
+                        User_Name : ReturnedStudent.User_Name
+                    });
+
+                    NewStudentAssign.save()
+                    .then(Saved => {
+                        console.log('Student Assign');
+                         res.redirect('/teacher/class/create');
+                    })
+                })
+        } else {
+            // If Class Emty
+            Class.findOne({ Class_Name: req.body.ClassName })
+            .then( ReturnedClass => {
+                // Check if this class is exist
+                if(ReturnedClass)
+                {
+                    User.findOne({ _id:UserId})
+                    .then( ReturnedStudent => {
+                        
+                        let NewStudentAssign = new Assign({
+                            Class_Id : ReturnedClasse._id,
+                            Class_Name : ReturnedClasse.Class_Name,
+                            User_Id : ReturnedStudent._id,
+                            User_Name : ReturnedStudent.User_Name
+                        });
+
+                        NewStudentAssign.save()
+                        .then(Saved => {
+                            console.log('Student Assign');
+                            res.redirect('/teacher/class/create');
+                        })
+                    })
+                }
             })
+
+        }
     })
 });
 
@@ -97,6 +144,9 @@ router.get('/class/add',ensureAuthenticated, RoleTeacher, (req, res) => {
             class_name : class_name,
             role2: true
         })
+
+
+        
     })
 })
 });

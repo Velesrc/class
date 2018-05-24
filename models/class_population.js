@@ -4,12 +4,24 @@ const Schema = mongoose.Schema;
 // Create Schema
 const ClassSchema = new Schema({
 
-  class_id:{
+  Class_Id:{
     type: String,
     required: true
   },
 
-  user_id:{
+  
+  User_Id:{
+      type: String,
+      require:true
+  },
+
+  Class_Name:{
+    type: String,
+    required: true
+  },
+
+  
+  User_Name:{
       type: String,
       require:true
   }
